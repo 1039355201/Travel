@@ -61,7 +61,8 @@ export default {
           height: 0
           overflow :hideen
           padding-bottom :50%
-     
+     .icons
+       margin-top :.2rem
       .icon
         float:left
         width: 25%
