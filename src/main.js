@@ -3,6 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 重置所有默认样式
+import 'styles/reset.css'
+// 1px像素问题
+import 'styles/border.css'
+// 移动端3s延迟
+import fastClick from 'fastclick'
+
+// import './assets/styles/iconfont.css'
+fastClick.attach(document.body)
 
 Vue.config.productionTip = false
 
