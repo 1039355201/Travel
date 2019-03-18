@@ -2,6 +2,7 @@
     <div>
         <home-header></home-header>
         <home-swiper></home-swiper>
+        <div>test</div>
     </div>
 </template>
 
@@ -12,7 +13,7 @@ export default {
   name: 'Home',
   components: {
     HomeHeader,
-    HomeSwiper
+    HomeSwiper,
   }
 }
 </script>
