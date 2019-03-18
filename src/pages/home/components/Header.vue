@@ -12,8 +12,10 @@
           <span class="iconfont icon-jiantou"></span>
         </div>
         <!-- <router-link to="/list">列表页</router-link> -->
+         <!-- <router-link to="/list">列表页</router-link> -->
     </div>
 </template>
+
 
 <script>
 
@@ -26,7 +28,7 @@ export default {
 // @import '../../../assets/styles/varibles.styl'
 // @import '~@/assets/styles/varibles.styl'
 @import '~styles/varibles.styl'
-   .header
+   .header 
      display:flex
      height :0.86rem
      line-height :0.86rem
