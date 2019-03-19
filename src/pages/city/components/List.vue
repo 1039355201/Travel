@@ -19,7 +19,7 @@
           </div>
         </div> 
       </div>
-      <div class="area" v-for="(item,index) in cities" :key="index">
+      <div class="area" v-for="(item,index) in cities" :key="index" :ref="index">
         <div class="title border-topbottom" >{{index}}</div>
         <div class="item-list" >
           <div class="item border-bottom" v-for="cities in item" :key="cities.id">{{cities.name}}</div>   
@@ -35,9 +35,21 @@ export default {
   props:{
     hotcities:Array,
     cities:Object,
+    getLetter:String,
   },
   data(){
     return{}
+  },
+  watch:{
+    getLetter(){
+      if(this.getLetter){
+        // console.log(this.$refs); ref最好的 例子
+        
+        var element=this.$refs[this.getLetter][0]
+        this.scroll.scrollToElement(element)
+      };
+      
+    }
   },
   mounted(){
    this.scroll = new BScroll(this.$refs.wrapper)

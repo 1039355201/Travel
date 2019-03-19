@@ -2,8 +2,8 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :hotcities="hotcities" :cities="cities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list :hotcities="hotcities" :cities="cities" :getLetter="letter"></city-list>
+    <city-alphabet :cities="cities" @func="getAlpha"></city-alphabet>
   </div>
 </template>
 <script>
@@ -17,7 +17,8 @@ export default {
   data(){
     return{
       cities:{},
-      hotcities:[]
+      hotcities:[],
+      letter:'',
     }
   },
   methods:{
@@ -33,10 +34,16 @@ export default {
         
         
       })
+    },
+    getAlpha(data){
+      this.letter=data;
+      
+      
     }
   },
   mounted(){
     this.getCityInfo();
+    this.getAlpha();
   },
   components:{
     CityHeader,
