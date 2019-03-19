@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     城市选择
-    <div class="iconfont icon-fanhui icon-back"></div>
+    <router-link to="/">
+      <div class="iconfont icon-fanhui icon-back"></div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -26,5 +28,5 @@ export default {
       text-align :center
       width:.64rem
       font-size: 0.4rem
-
+      color:#fff
 </style>
