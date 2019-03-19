@@ -1,16 +1,14 @@
 <template>
   <div class="alphabet-list">
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
-    <div class="item">A</div>
+    <div class="item" v-for="(item,index) in cities" :key="index">{{index}}</div>
   </div>
 </template>
 <script>
 export default {
-  name:"CityAlphabet"
+  name:"CityAlphabet",
+  props:{
+    cities:Object,
+  },
 }
 </script>
 <style lang="stylus" scoped>
