@@ -7,10 +7,12 @@
           <span class="iconfont icon-sousuo"></span>
           输入城市/景点/游玩主题
         </div>
-        <div class="header-right">
-          {{city}}
-          <span class="iconfont icon-jiantou"></span>
-        </div>
+        <router-link to="/City">
+          <div class="header-right">
+            {{city}}
+            <span class="iconfont icon-jiantou"></span>
+          </div>
+        </router-link>
         <!-- <router-link to="/list">列表页</router-link> -->
          <!-- <router-link to="/list">列表页</router-link> -->
     </div>
@@ -48,6 +50,7 @@ export default {
        width:1.24rem
        float:right
        text-align :center
+       color:#fff
        .icon-jiantou
           margin-left:-0.04rem
      .header-input
