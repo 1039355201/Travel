@@ -15,17 +15,22 @@ import HomeIcon from './components/Icon'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
 import axios from 'axios'
+import {mapState} from 'Vuex'
 export default {
   name: 'Home',
   data(){
     return {
       // city:"",
+      lastCity:'',
       swiperList:[],
       iconList:[],
       recommendList:[],
       weekendList:[],
 
     }
+  },
+  computed:{
+    ...mapState(['city'])
   },
   components: {
     HomeHeader,
@@ -36,7 +41,7 @@ export default {
   },
   methods:{
     getHomeInfo(){
-      axios.get('/api/index.json').then(res=>{
+      axios.get('/api/index.json?city='+this.city).then(res=>{
         res=res.data;
         if(res.ret&&res.data){
           
@@ -47,15 +52,26 @@ export default {
           this.recommendList=res.data.recommendList;
           
         }
-        console.log(res);
-        
+        // console.log(res);
+       
       })
     },
 
   },
   mounted(){
-    this.getHomeInfo()
-  }
+    this.lastCity=this.city;
+    this.getHomeInfo();
+    // console.log('mounted'); 
+  },
+  activated(){
+    // this.getHomeInfo();
+    // 当页面被重新渲染时,会执行
+    if(this.lastCity!=this.city){
+      this.lastCity=this.city;
+      this.getHomeInfo();
+
+    }
+  },
 }
 </script>
 
