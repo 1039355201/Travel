@@ -6,7 +6,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{this.city}}</div>
           </div>
         
         </div>
@@ -14,7 +14,7 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wrapper" v-for="item in hotcities" :key="item.id">
+          <div class="button-wrapper" v-for="item in hotcities" :key="item.id" @click="handleClickCity(item.name)">
             <div class="button">{{item.name}}</div>
           </div>
         </div> 
@@ -22,7 +22,7 @@
       <div class="area" v-for="(item,index) in cities" :key="index" :ref="index">
         <div class="title border-topbottom" >{{index}}</div>
         <div class="item-list" >
-          <div class="item border-bottom" v-for="cities in item" :key="cities.id">{{cities.name}}</div>   
+          <div class="item border-bottom" v-for="cities in item" :key="cities.id" @click="handleClickCity(cities.name)">{{cities.name}}</div>   
         </div>
       </div>
     </div>
@@ -30,6 +30,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import {mapState} from 'Vuex'
 export default {
   name:"CityList",
   props:{
@@ -39,6 +40,12 @@ export default {
   },
   data(){
     return{}
+  },
+  methods:{
+    handleClickCity(cityName){
+      this.$store.commit('getHomeCityName',cityName);
+      this.$router.push({path:'/'})
+    }
   },
   watch:{
     getLetter(){
@@ -51,8 +58,12 @@ export default {
       
     }
   },
+  computed:{
+    ...mapState({city:'city'})
+  },
   mounted(){
-   this.scroll = new BScroll(this.$refs.wrapper)
+   this.scroll = new BScroll(this.$refs.wrapper,{click:true});
+   
   },
 }
 </script>

@@ -5,7 +5,7 @@
     </div>
     <div class="sereah-content" ref="search" v-show="keyWords">
       <ul>
-        <li v-for="item in list" :key="item.id" class="sereah-item border-bottom">{{item.name}}</li>
+        <li v-for="item in list" :key="item.id" class="sereah-item border-bottom" @click="handleClickCity(item.name)" >{{item.name}}</li>
         <li  class="sereah-item border-bottom" v-show="hasNoData">没有匹配的数据</li>
       </ul>
     </div>
@@ -13,6 +13,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import {mapState,mapMutations} from 'Vuex'
 export default {
   name:"CitySearch",
   props:{
@@ -26,12 +27,17 @@ export default {
     }
   },
   methods:{
-    getInfo(){
-      console.log(this.list);
-    }
+    handleClickCity(cityName){
+      // this.$store.commit('getHomeCityName',cityName);
+      // this.changeCity(cityName);
+      this.getHomeCityName(cityName);
+      this.$router.push({path:'/'})
+    },
+    // ...mapMutations({changeCity:'getHomeCityName'}),
+    ...mapMutations(['getHomeCityName']),
   },
   created(){
-    this.getInfo()
+    
   },
   watch:{
      keyWords(){
@@ -56,12 +62,14 @@ export default {
    
     hasNoData(){
       return this.list.length>0 ? false :true
-    }
+    },
+    
+  
   },
   mounted(){
     // console.log(this.$refs.search);
     
-    this.scroll = new BScroll(this.$refs.search);
+    this.scroll = new BScroll(this.$refs.search,{click:true});
   },
 }
 </script>
