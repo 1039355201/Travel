@@ -28,6 +28,7 @@ export default {
           
    } 
   },
+  // 计算属性,如果图标下标>=8就开始放在另一个swiper里面 避免一个放不下的情形
   computed:{
     pages(){
       const pages=[];
